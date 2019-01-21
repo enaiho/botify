@@ -1,0 +1,94 @@
+
+<html>
+    
+    <head>
+    </head>
+    
+    <body>
+        
+        <div align="center">
+            
+            
+            <h2>Card Validation</h2>
+            
+            <input type="password" id="pass1" class="pass_field" />
+            <input type="password" id="pass2" class="pass_field" />
+            <input type="password" id="pass3" class="pass_field" />
+            <input type="password" id="pass4" class="pass_field" />
+            
+            
+            
+            <br />
+            <br />
+            
+            
+            <button id="btn_continue">Continue</button>
+            
+        
+        
+        
+        </div>
+        
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            
+            
+            $(document).ready(function(e){
+               
+               
+               var KeyPressFunc = function(id_prefix,index){
+                    
+                    
+                    index = index + 1;
+                    $("#" + id_prefix + index.toString()).keypress(function(){
+                        $("#" + id_prefix + (index + 1).toString() ).focus();
+                    });
+                    
+               };
+               
+               
+               
+               KeyPressFunc("pass",0);
+               KeyPressFunc("pass",1);
+               KeyPressFunc("pass",2);
+               KeyPressFunc("pass",3);
+               
+               
+               $("#btn_continue").on("click",function(){
+                    
+                    
+                    var pin = "";
+                    var id = "";
+                    
+                    $(".pass_field").each(function(e){
+                       
+                       id = $(this).attr("id");
+                       pin += $("#" + id).val();
+                       
+                       try { e.preventDefault(); }
+                       catch(ex){}
+                        
+                    });
+                    
+                    
+                    alert(pin);
+                    $(".pass_field").val("");
+                    
+                     
+               });
+               
+               
+               try { e.preventDefault(); }
+               catch(ex){ }
+               
+                
+            });
+            
+            
+        </script>
+        
+        
+    </body>
+    
+</html>

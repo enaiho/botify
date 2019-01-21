@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="en">
+<head>
+    
+    
+    
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>BOTIfy | Profile</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
+    <link href="/css/demo.css" rel="stylesheet" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    
+    
+</head>
+
+<body>
+    <div class="wrapper">
+        
+        
+        <%- sidebar %>
+        
+        
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        
+                        
+                        <!--<a class="navbar-brand" href="#"> <%= cat_name %> &nbsp; > &nbsp; Category </a>-->
+                        
+                        <h4 class="title navbar-brand"><a href="/bots">Bots</a> > <a href="/bot/<%= bot_id %>"> <%= bot_name; %></a> &nbsp;> <%= cat_name; %>  </h4>
+                        
+                        
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        
+                        
+                        <%- header %>
+                        
+                        
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="content">
+                
+                <div class="container-fluid">
+                    
+                    <div class="row">
+                        
+                        
+                        <div class="col-md-9">
+					
+				
+				
+					        <div class="card">
+					    
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title"><a href="/bots" style="text-decoration: underline;">Bots</a> > <a href="/bot/<%= bot_id %>" style="text-decoration: underline;"> <%= bot_name; %></a> &nbsp;> <%= cat_name; %>  </h4>
+                                
+                                </div>
+                                
+                    
+                                            
+                                 <% if(keywords.length == 0){ %>
+                                    
+                                    <div align="center">
+                                    
+                                        <br />
+                                        <br />
+                                        <h5>No question(s) have been added to this category. </h5>
+                                        <br />
+                                        <a href="javascript:add_keyword();" id="pop_add_keyword" class="btn btn-primary btn-round"> <i class="material-icons">add</i> Add Question</a>
+                                    
+                                    </div>
+                                    
+                                    <br />
+                                    
+                                <% }
+                                
+                                else{
+                                    
+                                    
+                                    %>
+                                    
+                                        <div class="card-content table-responsive">
+                                            
+                                            
+                                            <br />
+                                            <a href="javascript:add_keyword();" id="pop_add_keyword" class="btn btn-primary btn-round pull-right"> <i class="material-icons">add</i> Add Question</a>
+                                            <br />
+                                            
+                                            <table class="table">
+                                            
+                                            
+                                                <thead class="text-primary">
+                                                
+                                                <tr height="90px">
+                                                
+                                                
+                                                    <th>Question(s)</th>
+                                                    <th>Answer/Response</th>
+                                                    <th>Related/Similar Question(s)</th>
+                                                    
+                                                
+                                                </tr>
+                                                
+
+                                            </thead>
+                                                <tbody>
+                                                
+                                           
+                                    
+                                    <%
+                                    
+                                    for(var i=0; i<keywords.length; i++){
+                                        
+                                %>
+                                
+                                
+                                    <tr>
+                                        
+                                            
+                                        <td> <%= keywords[i].name %> </td>
+                                        <td> 
+                                        
+                                        
+                                        <div id="values">
+                                        
+             
+                                        <%
+                                        
+                                        
+                                        var val_output;
+                                        if(values.length > 0){
+                                            
+                                            for(var k=0; k<values.length; k++){
+                                                
+                                                
+                                                if(keywords[i]._id == values[k].keyword_id){
+                                                    
+                                                    val_output = values[k].value;
+                                                    
+                                                    %>
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    <%
+                                                    
+                                                    break;
+                                                    
+                                                }
+                                                else{
+                                                    
+                                                    val_output = 0;
+                                                    
+                                                    %>
+                                                    <%
+                                                    
+                                                }
+                                                
+                                                
+                                                
+                                                %>
+                                                
+                                                
+                                                <%
+                                                    
+                                            }
+                                            
+                                            %>
+                                            
+                                                
+                                                
+                                                <div>
+                                                    <% 
+                                                    
+                                                    if(val_output == 0){
+                                                        
+                                                        %>
+                                                        
+                                                        
+                                                        <span style="color:#F00;">No value for this keyword</span>
+                                                        <button style="margin-left:-5%;" id="value_<%= keywords[i]._id; %>"  title="Add Value" type="button" class="cls_add_value btn btn-primary btn-simple btn-xs">
+                                                            <i class="material-icons">add</i>
+                                                        </button>
+                                                
+                                                
+                                                        <%
+                                                        
+                                                    }
+                                                    else
+                                                    {
+                                                        
+                                                        
+                                                        %>
+                                                        
+                                                        
+                                                        <%= val_output %>
+                                                        
+                                                        
+                                                        <button style="margin-left:-5%;" id="val_<%= values[k].id %>" title="Edit Keyword" type="button" class="cls_edit_value btn btn-primary btn-simple btn-xs">
+                                                            <i class="material-icons">edit</i>
+                                                        </button>
+                                                        
+                                                        
+                                                        <%
+                                                        
+                                                        
+                                                    }
+                                                    
+                                                    %>
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                            <%
+                                            
+                                        }
+                                        else
+                                        {
+                                            
+                                            %>
+                                                        
+                                                        
+                                            <span style="color:#F00;">No value for this keyword</span>
+                                            <button style="margin-left:-5%;" id="value_<%= keywords[i]._id; %>"  title="Add Value" type="button" class="cls_add_value btn btn-primary btn-simple btn-xs">
+                                                <i class="material-icons">add</i>
+                                            </button> 
+                                
+                                            
+                                            <%
+                                            
+                                        }
+                                        
+                                        %>
+                                            
+                                            
+                                        
+                                        
+                                        <!--<a href="javascript:add_value();" id="value_<%= keywords[i]._id; %>" class="cls_add_value">Add Value</a>-->
+                                        
+                                            
+                                        </div> 
+                                        
+                                        
+                                        </td>
+                                        
+                                        
+                                        
+                                        <td> 
+                                        
+                                            
+                                            <div id="synonyms">
+                                                
+                                                
+                                                <%
+                                                
+                                                if(synonyms.length > 0){
+                                                    
+                                                    count = 0;
+                                                    
+                                                    for(var j=0; j<synonyms.length; j++){
+                                                        
+                                                        
+                                                        if(keywords[i]._id == synonyms[j].keyword_id){
+                                                            
+                                                            count++;
+                                                            
+                                                            %>
+                                                            
+                                                            <div style="margin-left:10%;" class="cls_syns_<%= keywords[i]._id %>" id="syn_<%= keywords[i]._id + "_" + count.toString() %>">
+                                                            
+                                                                
+                                                                <span class="span_syn_<%= keywords[i]._id %>"><%= synonyms[j].name %></span>
+                                                                
+                                                                
+                                                                <!--<a href="javascript:;" class="cls_edit" id="<%= synonyms[j].id %>">Edit</a><label> | </label>-->
+                                                                
+                                                                <div style="margin-left:-54%;">
+                                                                <button style="padding-left:35%;" id="edit_<%= synonyms[j].id %>"  type="button" title="Edit Synonym" class="cls_edit_synonym btn btn-primary btn-simple btn-xs">
+                                                                    <i class="material-icons">edit</i>
+                                                                </button>
+
+                                                                <button style="margin-left:-12%;" type="button" title="Delete Synonym" class="cls_delete btn btn-danger btn-simple btn-xs" id="<%= synonyms[j].id %>">
+                                                                    <i class="material-icons">close</i>
+                                                                </button>
+                                                                
+                                                                
+                                                                </div>
+
+
+                                                                <!--<a href="javascript:;" class="cls_delete">-->
+                                                                    
+                                                                <!--    <i class="material-icons"> close </i>-->
+                                                                
+                                                                <!--</a>-->
+                                                            
+                                                            
+                                                            
+                                                            </div>
+                                                            
+                                                            <%
+                                                            
+                                                        }
+                                                        
+                                                        
+                                                        %>
+                                                        <%
+                                                        
+                                                    }
+                                                    
+                                                }
+                                                
+                                                
+                                                %>
+                                                
+                                                
+                                            </div>
+                                            <div class="col-md-12">
+                                                
+                                                
+                                                <div class="form-group label-floating">
+                                                    
+                                                    
+                                                    <label style="font-size:12px; margin-top:-3%;" class="control-label">Enter Synonym and Press 'Enter'</label>
+                                                    <input type="text" style="border-bottom:1px dashed purple;" class="form-control syn" id="<%= keywords[i]._id %>" />
+                                                    
+                                                    <br />
+                                                    <span id="process_<%= keywords[i]._id %>"></span>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                            
+                                            
+                                            <br />
+                                            <br />
+                                            
+                                        
+                                        </td>
+
+
+                                        <td><a style="color:#F00;" href="javascript:delete_keyword();" class="cls_del_keyword" id="<%= keywords[i]._id %>">Delete Keyword :( </a></td>
+                                        
+                                        
+                                        
+                                    </tr>
+                                
+                                        
+                                <%
+                                        
+                                    }
+                                    
+                                    
+                                    %>
+                                    
+                                     </tbody>
+                                        
+                                        
+                                    </table>
+                                        </div>
+                                    
+                                    
+                                    <%
+                                    
+                                    }
+                                
+                                
+                                %>
+                                
+                                
+                            </div>
+                            
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-profile">
+                                <div class="card-avatar">
+                                    <a href="#pablo">
+                                        <img class="img" src="/img/bot_avatar.png" />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    
+                                    <h4 class="card-title"><%= bot_name %></h4>
+                                    <p class="card-content">
+                                        
+                                        <%= bot_desc %>
+                                        
+                                    </p>
+                                    
+                                    <a href="http://<%= domain %>/<%= bot_name.toLowerCase() %>" target="_blank" class="btn btn-primary btn-round">OPEN BOT</a>
+                                    <a href="javascript:no_response();" class="btn btn-warn btn-round" id="btn_no_response">SET "NO ANSWER" RESPONSE</a>
+                                    <a href="/bot/<%= bot_id %>/settings" class="btn btn-success btn-round" id="btn_settings"><i class="material-icons">settings</i> SETTINGS</a>
+                                    <a href="javascript:destroy();" class="btn btn-danger btn-round" id="destroy_bot">DESTROY BOT</a>
+						
+						<br />
+<br />
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <p align="center" class="copyright">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="javascript:;">Fintech & Innovations</a>                    </p>
+                </div>
+
+            </footer>
+            
+        </div>
+    
+    </div>
+    
+
+    <input type="hidden" id="cat_id" value="<%= cat_id %>" />
+    <input type="hidden" id="bot_id" value="<%= bot_id %>" />    
+    
+
+
+<div id="AddValue" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Value</h4>
+      </div>
+      
+      <div class="modal-body">
+        
+        <form method="post">
+            
+            <div class="row">
+                
+                
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="form-group label-floating">
+                            
+                            <label class="control-label">Enter the response you want your users to get</label><br />
+                            <textarea class="form-control" rows="3" id="value"></textarea>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                
+            </div>
+            
+            <br />
+            
+            <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+            <button type="submit" id="btn_add_value" class="btn btn-primary pull-right">Save</button>
+            <div class="clearfix"></div>
+            
+            
+            
+        </form>
+      
+      
+      </div>
+      
+      
+      <div class="modal-footer">
+      </div>
+    
+    
+    </div>
+    
+
+  </div>
+  
+</div>
+
+
+<div id="NoResponse" class="modal fade" role="dialog">
+    
+    
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        
+        
+        <div class="modal-content">
+          
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Set "No Answer" Response for your Bot. </h4>
+          </div>
+          
+          
+          
+          <div class="modal-body">
+            
+            <form method="post">
+                
+                <div class="row">
+                    
+                    <div class="col-md-12">
+                        
+                        <div class="form-group label-floating">
+                            
+                            <textarea class="form-control" rows="3" id="resp_val"></textarea>
+                            
+                        </div>
+                    
+                    </div>
+                    
+                </div>
+                
+                <br />
+                
+                <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+                <button type="submit" id="btn_set_resp" class="btn btn-primary pull-right">Set Response</button>
+                
+                <div class="clearfix"></div>
+                
+            </form>
+          
+          </div>
+          
+          
+          <div class="modal-footer">
+          </div>
+          
+        
+        </div>
+    
+    
+    </div>
+    
+    
+</div>
+<div id="AddKeyword" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Question</h4>
+      </div>
+      
+      <div class="modal-body">
+        
+        <form method="post">
+            
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <div class="form-group label-floating">
+                        <label class="control-label">Question</label>
+                        <input type="text" class="form-control" id="keyword" />
+                    </div>
+                </div>
+                
+            </div>
+            
+            <br />
+            
+            <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+            <button type="submit" id="btn_add_keyword" class="btn btn-primary pull-right">Save</button>
+            
+            <div class="clearfix"></div>
+            
+            
+        </form>
+      
+      
+      </div>
+      
+      
+      
+      <div class="modal-footer">
+        
+        
+        
+        
+
+      </div>
+    
+    
+    </div>
+    
+
+  </div>
+  
+</div>
+<div id="DeleteSynonym" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete Synonym</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this <strong>synonym</strong>. Once deleted, you would not be able to recover it. </p>
+      </div>
+      
+      
+      
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" id="btn_del_syn">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      
+      </div>
+    
+    
+    
+    </div>
+
+  </div>
+</div>
+<div id="DeleteKeyword" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete Keyword</h4>
+      </div>
+      
+      
+      <div class="modal-body">
+        <p>Are you sure you want to delete this <strong>keyword</strong>. Deleting this keyword would remove values,synonyms & expressions.  </p>
+      </div>
+      
+      
+      
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" id="btn_del_keyword">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      
+      </div>
+    
+    
+    
+    </div>
+
+  </div>
+</div>
+<div id="DeleteBot" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete Bot</h4>
+      </div>
+      
+      
+      <div class="modal-body">
+        <p>Are you sure you want to delete this <strong>bot</strong>. Deleting this bot would crash everything you have done on it.  </p>
+      </div>
+      
+      
+      
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" id="btn_del_bot">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      
+      </div>
+    
+    
+    
+    </div>
+
+  </div>
+</div>
+<div id="DeleteExpression" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete Expression</h4>
+      </div>
+      
+      
+      <div class="modal-body">
+        <p>Are you sure you want to delete this <strong>expression</strong>. Once deleted, you would not be able to recover it. </p>
+      </div>
+      
+      
+      
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" id="btn_del_exp">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      
+      </div>
+    
+    
+    
+    </div>
+
+  </div>
+</div>
+<div id="EditSynonym" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Related/Similar Questions</h4>
+      </div>
+      
+      <div class="modal-body">
+        
+        <form method="post">
+            
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <div class="form-group label-floating">
+                        
+                        <!--<label class="control-label">Synonym</label>-->
+                        <input type="text" class="form-control" id="edit_synonym" />
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            <br />
+            
+            <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+            <button type="submit" id="btn_save_synonym" class="btn btn-primary pull-right">Save</button>
+            
+            <div class="clearfix"></div>
+            
+            
+        </form>
+      
+      </div>
+      
+      
+      <div class="modal-footer">
+      </div>
+      
+    
+    </div>
+    
+  </div>
+  
+</div>
+<div id="EditExpression" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Expression</h4>
+      </div>
+      
+      <div class="modal-body">
+        
+        <form method="post">
+            
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <div class="form-group label-floating">
+                        
+                        <!--<label class="control-label">Synonym</label>-->
+                        <input type="text" class="form-control" id="edit_expression" />
+                        
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+            <br />
+            
+            <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+            <button type="submit" id="btn_save_expression" class="btn btn-primary pull-right">Save</button>
+            
+            <div class="clearfix"></div>
+            
+            
+        </form>
+      
+      </div>
+      
+      
+      <div class="modal-footer">
+      </div>
+      
+    
+    </div>
+    
+  </div>
+  
+</div>
+<div id="EditValue" class="modal fade" role="dialog">
+    
+    
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        
+        
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Answer/Response</h4>
+          </div>
+          
+          <div class="modal-body">
+            
+            <form method="post">
+                
+                <div class="row">
+                    
+                    <div class="col-md-12">
+                        
+                        <div class="form-group label-floating">
+                            
+                            <textarea class="form-control" rows="3" id="edit_value"></textarea>
+                            
+                        </div>
+                    
+                    </div>
+                    
+                </div>
+                
+                <br />
+                
+                <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+                <button type="submit" id="btn_save_value" class="btn btn-primary pull-right">Save</button>
+                
+                <div class="clearfix"></div>
+                
+            </form>
+          
+          </div>
+          
+          
+          <div class="modal-footer">
+          </div>
+          
+        
+        </div>
+    
+    
+    </div>
+    
+    
+</div>
+
+
+
+<input type="hidden" id="syn_del_id" />
+<input type="hidden" id="bot_name" value="<%= bot_name %>" />
+<input type="hidden" id="val_keyword_id" />
+<input type="hidden" id="del_keyword_id" />
+<input type="hidden" id="bot_id" value="<%= bot_id %>" />
+<input type="hidden" id="synonym_id" />
+<input type="hidden" id="edit_value_id" />
+<input type="hidden" id="edit_expression_id" />
+<input type="hidden" id="del_expression_id" />
+
+
+ 
+</body>
+
+
+<!--   Core JS Files   -->
+
+
+<script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/material.min.js" type="text/javascript"></script>
+<script src="/js/chartist.min.js"></script>
+<script src="/js/arrive.min.js"></script>
+<script src="/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/js/bootstrap-notify.js"></script>
+<script src="/js/material-dashboard.js?v=1.2.0"></script>
+<script src="/js/demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.7/xlsx.core.min.js"></script>
+<script src="/js/app.js"></script>        
+
+
+</html>
+
+
+<!--
+<html>
+    
+    <head></head>
+    <body>
+        
+        <div align="center">
+            
+            
+            <h1> <%= cat_name %> </h1>
+            
+            
+            <a href="javascript:;">Delete category</a>
+            
+            <br />
+            <br />
+            
+            
+             <div>    
+                
+                
+                <a href="home">Home</a><label> | </label>
+                <a href="bots">Bots</a><label> | </label>
+                <a href="/users">Users</a>
+            
+            
+            </div>
+            
+            
+            <br />
+            
+            
+            <a href="javascript:;" id="add_bot_cat"> ( + Add Keyword ) </a>
+            
+            
+             <% if(keywords.length == 0){ %>
+                <h3>No keyword(s) have been created for this category. </h3>    
+            <% }
+            
+            else{
+                
+                
+                %>
+                
+                <br />
+                <br />
+                
+                
+                <table>
+                    
+                    <tr>
+                        
+                        
+                        <th>Keyword(s)</th>
+                        <th>Value</th>
+                        <th>Synonym(s)</th>
+                        <th>Expression(s)</th>
+                        
+                        
+                        
+                    </tr>
+                
+                
+                <%
+                
+                for(var i=0; i<keywords.length; i++){
+                    
+            %>
+            
+            
+                <tr>
+                    
+                        
+                    <td> <%= keywords[i].name %> </td>
+                    <td> 
+                    
+                    
+                    <div id="values">
+                        
+                        
+                    
+                    <%
+                        
+                    if(values.length > 0){
+                        
+                        for(var k=0; k<values.length; k++){
+                            
+                            
+                            if(keywords[i]._id == values[k].keyword_id){
+                                
+                                %>
+                                
+                                <%= values[k].value %>
+                                
+                                <%
+                                
+                            }
+                            
+                            
+                            %>
+                            
+                            
+                            <%
+                                
+                        }
+                        
+                        
+                    }
+                    else
+                    {
+                        
+                        %>
+                        <strong> No value. </strong> 
+                        <%
+                        
+                    }
+                    
+                    %>
+                        
+                        
+                    <br /><a href="javascript:add_value();" id="value_<%= keywords[i]._id; %>" class="cls_add_value">Add Value</a>
+                    
+                        
+                    </div> 
+                    
+                    
+                    </td>
+                    <td align="right"> 
+                    
+                        <div id="synonyms">
+                            
+                            
+                            <%
+                            
+                            if(synonyms.length > 0){
+                                
+                                count = 0;
+                                
+                                for(var j=0; j<synonyms.length; j++){
+                                    
+                                    
+                                    if(keywords[i]._id == synonyms[j].keyword_id){
+                                        
+                                        count++;
+                                        
+                                        %>
+                                        
+                                        <div class="cls_syns_<%= keywords[i]._id %>" id="syn_<%= keywords[i]._id + "_" + count.toString() %>">
+                                        
+                                            
+                                            <span class="span_syn_<%= keywords[i]._id %>"><strong><%= synonyms[j].name %></strong></span>
+                                            <a href="javascript:;" class="cls_edit" id="<%= synonyms[j].id %>">Edit</a><label> | </label>
+                                            <a href="javascript:;" class="cls_delete" id="<%= synonyms[j].id %>">Delete</a>
+                                        
+                                        
+                                        
+                                        </div>
+                                        
+                                        <%
+                                        
+                                    }
+                                    
+                                    
+                                    %>
+                                    
+                                    
+                                    
+                                    <%
+                                    
+                                }
+                                
+                            }
+                            
+                            %>
+                            
+                            
+                        </div>
+                        
+                        <input type="text" class="syn" placeholder="Add Synonym" id="<%= keywords[i]._id %>" />
+                        
+                        <br />
+                        <br />
+                        
+                    
+                    </td>
+                    <td> 
+                        
+                        
+                        <div id="expressions">
+                        </div>
+                        
+                        <input type="text" class="exp" placeholder="Add Expression" id="exp_<%= keywords[i]._id %>" /> 
+                        
+                        
+                        
+                    </td>
+                    
+                    
+                    <td><a href="javascript:delete_keyword();" class="cls_del_keyword" id="<%= keywords[i]._id %>">Delete keyword</a></td>
+                    
+                    
+                </tr>
+            
+                    
+            <%
+                    
+                }
+                
+                
+                %>
+                
+                </table>
+                
+                <%
+                
+            }
+            
+            
+            %>
+            
+            
+            <h3>Add Keyword</h3>
+            
+            
+            <label>Keyword</label><br />
+            <input type="text" name="keyword" id="keyword" />
+            
+            <br /><br />
+            
+            
+
+            
+            
+            <button id="btn_add_keyword">Add Keyword</button>
+            
+            
+            
+            <br /><br />
+            
+            
+            
+            <h3>Add Value</h3>
+            <label>Value</label><br />
+            <textarea id="value" name="value"></textarea>
+            
+            <br /><br />
+            
+            
+            
+            
+            <button id="btn_add_value">Submit</button>
+            
+            
+        </div>
+        
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        
+    
+    </body>
+    
+    
+    
+</html>
+-->

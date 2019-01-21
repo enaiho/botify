@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+
+	<title></title>
+	<style type="text/css">
+		
+
+	
+
+	#close_chat{
+		display: none;
+	}
+
+	#chat_window{
+		display: none;
+	}
+
+
+
+	</style>
+
+
+</head>
+<body>
+
+
+	
+
+	<div id="chat_window">
+
+
+
+		<div id="content">
+	        
+
+	        	        
+	        <div class="chatbot"> <p class="chatbotspan"><%= name %></p></div>
+	        <br>
+	        <br>
+
+	                    
+	    </div>
+
+
+	    
+	    <input placeholder="Send a message" maxlength="80" type="text" id="msg" /> 
+	    <button id="go">
+	        
+	        
+	        <svg fill="white" version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512">
+	        <title></title>
+	        <g id="icomoon-ignore">
+	        </g>
+	        <path d="M288 124.186v-124.186l192 192-192 192v-126.912c-223.375-5.241-213.794 151.896-156.93 254.912-140.356-151.707-110.55-394.785 156.93-387.814z"></path>
+	        </svg>
+	        
+	    </button>
+
+	    
+	    <br />
+		<br />
+		<br />
+
+
+
+	</div>
+
+
+
+
+	
+	<button value="" id="open_chat">Open Chat</button>
+	<button value="" id="close_chat">Close Chat</button>
+
+
+
+
+	<input type="hidden" id="token" value="<%= token %>" />
+    <input type="hidden" id="bot_id" value="<%= bot_id %>" />
+    <input type="hidden" id="bot_name" value="<%= name %>" />
+    <input type="hidden" id="bot_username" value="<%= username %>" />
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script type ="text/javascript">
+
+
+
+        $(document).ready(function (){
+
+            
+
+            var objDiv = document.getElementById("content");
+            var socket = io.connect();
+            var pushMessage = function(message){
+                
+                
+                
+
+                // use localStorage to hold the token
+                // localStorage
+
+
+                
+                var message_value;
+                
+                if(message != undefined){
+                    message_value = message;
+                }
+                else
+                {
+                    message_value = $('#msg').val();
+                }
+                
+                
+                var token = $("#token").val();
+                var bot_name = $("#bot_name").val();
+                var bot_id = $("#bot_id").val();
+                var bot_username = $("#bot_username").val();
+    
+                    
+                if(message_value != "" && message_value != " "){
+                        
+                        
+                        $('button').prop('disabled', 'disabled');
+                        $('#content').append("<div class='user'><span class='userspan'>"+message_value+"</span></div>");
+                        socket.emit("user_sent", {reason: message_value, token: token, bot_name: bot_name, bot_id:bot_id, bot_username:bot_username  });
+                        
+                        $("#msg").val("");
+                        objDiv.scrollTop = objDiv.scrollHeight;
+                        
+                    }
+                    
+                
+                
+            }
+            
+
+
+            $('#msg').keypress(function(e) {
+                
+                
+                if(e.which == 13) {
+                    pushMessage();
+                }
+                
+                
+            });
+            
+            $("#go").on("click",function(){
+                
+                pushMessage();
+                    
+            });
+
+            $("#btn_rate").on("click",function(){
+
+
+                $("#AddCategory").modal("show");
+
+            });
+
+
+            $("#btn_submit_rate").on("click",function(e){
+
+
+                var rating_value = $("#rating_value").val();
+                var rating_exp = $("#rating_exp").val();
+
+                // alert(rating_value);
+                // alert(rating_exp);
+                // return;
+
+                $.post("/rate_chat",{rating_value:rating_value,rating_exp:rating_exp},function(data){
+
+                    alert(data.msg);
+                    $("#AddCategory").modal("hide");
+                    
+
+                });
+
+
+                try{ e.preventDefault(); }
+                catch(ex){}
+
+
+
+            });
+            
+            socket.on('server_response', function (data){
+                
+                //console.log(data);
+                
+
+                var response;
+                var response_html;
+                var btn_resp = "";
+                
+                if(data.suggest == true){
+                    
+                    response = data.response;
+                    response_html = "<div class='chatbot'><p class='chatbotspan'>Did you mean these?</p></div>";
+                    
+                    if(response.length > 0){
+                        
+                        
+                        for(var i=0; i<response.length; i++){
+                        
+                            btn_resp += "<div class='options_holder'><div class='horizontal_move'>";
+                            btn_resp += "<button class='option resp_btn'>" + response[i] + "</button>";
+                            btn_resp += "</div></div>";
+                        
+                        }
+                        
+                    }
+                    
+                    response_html = response_html + btn_resp;
+                    
+                }
+                else
+                {
+                    
+                    response = data.response;
+                    response_html = "<div class='chatbot'><p class='chatbotspan'>"+response+"</p></div>"
+                    
+                }
+                
+                
+                $('button').prop('disabled', false);
+                $('#content').append(response_html);
+                objDiv.scrollTop = objDiv.scrollHeight;
+                
+                var index = 0;
+
+
+                $(".resp_btn").each(function(e){
+                    
+                                                
+                    $(this).on("click",function(){
+                        
+
+                        index++;
+                
+                        if( index == 1 )
+                        {
+
+                            var val_question = $(this).text().toString();
+                            pushMessage(val_question);
+
+                        }
+                        
+                        //return false;
+                
+                
+                    });
+                    
+                    //return false;
+
+                    try { e.preventDefault() }
+                    catch(ex) { }
+                    
+                    
+                }); 
+
+
+                
+            });
+            
+            
+        });
+
+    </script>
+	<script type="text/javascript">
+		
+		$(document).ready(function(e){
+
+
+
+			$("#open_chat").on("click",function(){
+
+
+				$("#chat_window").show();
+				$("#open_chat").hide();
+				$("#close_chat").show();
+
+
+			});
+
+			$("#close_chat").on("click",function(){
+				
+
+				$("#chat_window").hide();
+				$("#open_chat").show();
+				$("#close_chat").hide();
+
+
+			});
+
+
+			try{ e.preventDefault(); }
+			catch(ex){
+
+			}
+
+
+		});
+
+
+	</script>
+
+
+	<input type="hidden" id="bot_id" value="<%= bot_id %>" />
+
+
+</body>
+</html>

@@ -1,0 +1,411 @@
+<html>
+<head>
+<title></title>
+
+
+<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+    
+    
+    <style type="text/css">
+        #holder {
+                width: 93vw;
+                height: 90vh;
+                border: 1px solid silver;
+
+                margin: auto;
+                position: relative;
+                border-radius: 20px;
+        }
+        h3 {
+            background: #FF512F;
+            background: -webkit-linear-gradient(to right, #DD2476, #FF512F);
+            background: linear-gradient(to right, #DD2476, #FF512F);
+            -webkit-margin-before: 0em;
+            -webkit-margin-after: 0em;
+            font-family: 'Lato';
+            color: white;
+            height: 60px;
+            text-align: left;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding-top: 10px;
+            text-align: center;
+            font-size: 40px;
+        }
+        input {
+            position: absolute;
+            bottom: 0;
+            outline: none !important;
+            width: 85%;
+            left: 0;
+            height: 80px;
+            font-size: 40px;
+            border-bottom-left-radius: 20px;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid silver;
+            transition: 0.2s;
+        }
+        input:focus{
+          box-shadow: 0 0 5px coral;
+          border: 1px solid coral;
+          border-bottom-left-radius: 20px;
+        }
+        #content {
+            overflow: auto;
+            width: 100%;
+            height: 79vh;
+            background: whitesmoke;
+            padding: 10px;
+        }
+        
+        .chatbot {
+            text-align: left;
+            margin: 10px;
+        }
+        .chatbotspan {
+                font-size: 40px;
+                background: white;
+                color: black;
+                padding: 10px;
+                border-radius: 5px;
+                font-family: 'Lato';
+                max-width: 55%;
+                text-align: left;
+                display: inline-block;
+                -webkit-margin-before: 0;
+                -webkit-margin-after: 0;
+        }
+        .user {
+            text-align: right;
+            margin: 10px;
+
+        }
+        ul {
+                padding: 0;
+                text-align: left;
+                -webkit-margin-before: 0;
+                -webkit-margin-after: 0;
+                margin: 10px;
+        }
+        li {
+                background: white;
+                display: inline-block;
+                color: black;
+                padding: 10px;
+                border-radius: 5px;
+                font-family: 'Lato';
+                max-width: 55%;
+                padding: 10px;
+        }
+        /*.user::after {
+                content: "";
+                position: absolute;
+                border-bottom: 10px solid transparent;
+                border-left: 28px solid #824F5D;
+                right: 0px;
+        }*/
+        .userspan {
+            font-size: 40px;
+            background: #824F5D;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Lato';
+            max-width: 55%;
+            text-align: left;
+            display: inline-block;
+            -webkit-margin-before: 0;
+            -webkit-margin-after: 0;
+        }
+        #loading {
+            float: left;
+            transition: .2s;
+        }
+        .action {
+            color: white;
+            padding: 10px 20px 10px 20px;
+            border: none;
+            font-family: sans-serif;
+            border-radius: 20px;
+            width: 40%;
+            background: #824F5D;
+            margin-top: 10px;
+            font-size: 40px;
+            display: inline-block;
+            border-radius: 230px;
+            width: 300px;
+            height: 300px;
+            vertical-align: top;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+        #go {
+            background-color: cornflowerblue;
+            width: 14.9%;
+            right: 0;
+            border: none;
+            position: absolute;
+            bottom: 0;
+            color: white;
+            height: 80px;
+            border-bottom-right-radius: 20px;
+        }
+        .img_span {
+            margin-bottom: 5px;
+            display: inline-block;
+            width: 100%; text-align: center;
+            border-bottom: 1px solid maroon;
+        }
+        #option_content {
+            overflow-x: auto; 
+            width: 
+        }
+        .top_layer {
+            background: white;
+            height: 175px;
+            margin: auto; 
+            text-align: center;
+            width: 404px;
+            transform: translateY(-10px) translateX(-50px);
+        }
+        
+        /* new code */
+        
+        .options_holder{
+        	overflow-x: auto;
+        }
+        .verse {
+            cursor: pointer;
+            color: #176D8A;
+        }
+        .horizontal_move{
+        	min-width: 200px;
+        	display: inline-flex;
+        }
+        .option { 
+        	padding: 15px 20px 15px 20px; border:none;
+        	border-radius: 25px; 
+        	font-size: 25px; 
+        	margin: 10px; 
+        	color: #fff;
+        	background: #469BB2;
+        	width: 420px;
+        }
+        
+        /* new code */
+        
+        a:visited {
+            color: green;
+        }
+        
+        @media (min-width:1025px) { #content {
+            overflow: auto;
+            width: 98.5%;
+            height: 70vh;
+            background: whitesmoke;
+            padding: 10px;
+        } }
+        @media (min-width:1281px) { #content {
+            overflow: auto;
+            width: 98.5%;
+            height: 70vh;
+            background: whitesmoke;
+            padding: 10px;
+        } }
+    </style>
+    <script src="/js/jquery.min.js"></script>
+    <script type ="text/javascript" src="/js/socket.io.js"></script>
+    <script type ="text/javascript">
+
+        $(document).ready(function (){
+
+            
+            var objDiv = document.getElementById("content");
+            var socket = io.connect();
+                        
+            
+            var pushMessage = function(message){
+                
+                
+                // use localStorage to hold the token
+                // localStorage
+                
+                var message_value;
+                
+                if(message != undefined){
+                    message_value = message;
+                }
+                else
+                {
+                    message_value = $('#msg').val();
+                }
+                
+                //alert(message_value);
+                
+                
+                var token = $("#token").val();
+                var bot_name = $("#bot_name").val();
+                var bot_id = $("#bot_id").val();
+                var bot_username = $("#bot_username").val();
+    
+                    
+                if(message_value != "" && message_value != " "){
+                        
+                        
+                        $('button').prop('disabled', 'disabled');
+                        $('#content').append("<div class='user'><span class='userspan'>"+message_value+"</span></div>");
+                        socket.emit("user_sent", {reason: message_value, token: token, bot_name: bot_name, bot_id:bot_id, bot_username:bot_username  });
+                        
+                        $("#msg").val("");
+                        objDiv.scrollTop = objDiv.scrollHeight;
+                        
+                    }
+                    
+                
+                
+            }
+            
+
+
+            $('#msg').keypress(function(e) {
+                
+                
+                if(e.which == 13) {
+                    pushMessage();
+                }
+                
+                
+            });
+            
+            $("#go").on("click",function(){
+                
+                pushMessage();
+                    
+            });
+            
+            socket.on('server_response', function (data){
+                
+                console.log(data);
+                var response;
+                var response_html;
+                var btn_resp = "";
+                
+                if(data.suggest == true){
+                    
+                    response = data.response;
+                    response_html = "<div class='chatbot'><p class='chatbotspan'>Did you mean these?</p></div>";
+                    
+                    if(response.length > 0){
+                        
+                        
+                        for(var i=0; i<response.length; i++){
+                        
+                            btn_resp += "<div class='options_holder'><div class='horizontal_move'>";
+                            btn_resp += "<button class='option resp_btn'>" + response[i] + "</button>";
+                            btn_resp += "</div></div>";
+                        
+                        }
+                        
+                    }
+                    
+                    response_html = response_html + btn_resp;
+                    
+                }
+                else
+                {
+                    
+                    response = data.response;
+                    response_html = "<div class='chatbot'><p class='chatbotspan'>"+response+"</p></div>"
+                    
+                }
+                
+                
+                $('button').prop('disabled', false);
+                $('#content').append(response_html);
+                objDiv.scrollTop = objDiv.scrollHeight;
+                
+
+                var index = 0;
+
+
+                $(".resp_btn").each(function(e){
+                    
+                                                
+                    $(this).on("click",function(){
+                        
+
+                        index++;
+                
+                        if( index == 1 )
+                        {
+
+                            var val_question = $(this).text().toString();
+                            pushMessage(val_question);
+
+                        }
+                        
+                        //return false;
+                
+                
+                    });
+                    
+                    //return false;
+
+                    try { e.preventDefault() }
+                    catch(ex) { }
+                    
+                    
+                }); 
+                
+            });
+            
+            
+        })
+
+    </script>
+</head>
+<body>
+    
+    
+    <input type="hidden" id="token" value="<%= bot_token %>" />
+    <input type="hidden" id="bot_id" value="<%= bot_id %>" />
+    <input type="hidden" id="bot_name" value="<%= bot_name %>" />
+    <input type="hidden" id="bot_username" value="<%= bot_username %>" />
+
+    
+    <!-- <button>I AM A BUTTON!</button> -->
+    <div id="holder">
+
+        <h3><img style="width: 90px;" src="/img/botify_logo.gif"><span style="vertical-align: top; margin-left: 0px;"><%= bot_name %> </span></h3>
+        <div id="content">
+            
+            
+            <div class="chatbot"> <p class="chatbotspan">Hello! &#128075; Welcome to <strong>"<%= bot_name %>"</strong>. How can I help you?</p></div>
+            <br>
+            <br>
+            
+            
+        </div>
+        <input placeholder="Send a message" maxlength="80" type="text" id="msg" />
+        
+        <button id="go">
+            
+            
+            <svg fill="white" version="1.1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512">
+            <title></title>
+            <g id="icomoon-ignore">
+            </g>
+            <path d="M288 124.186v-124.186l192 192-192 192v-126.912c-223.375-5.241-213.794 151.896-156.93 254.912-140.356-151.707-110.55-394.785 156.93-387.814z"></path>
+            </svg>
+            
+            
+        </button>
+        
+        
+        
+        
+    </div>
+    <!-- web page goes here -->
+</body>
+</html><br>

@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+    
+    
+    
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>BOTIfy | Settings</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    
+
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
+    <link href="/css/demo.css" rel="stylesheet" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    
+
+    
+</head>
+
+<body>
+    <div class="wrapper">
+        
+        
+        <%- sidebar %>
+        
+        
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        
+                        <a style="color:#9c27b0; text-decoration:underline;" class="title navbar-brand" href="/bot/<%= bot_id %>"><%= bot_name %></a>
+                        <span style="margin-left:-10%;" class="navbar-brand"> >&nbsp;Settings</span>
+                        
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        
+                        
+                        <%- header %>
+                        
+                        
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        
+                        
+                        <div class="col-md-3">
+                            
+                            
+                            <div class="row">
+                            
+
+                                <div class="col-md-12">
+
+                                
+                                    <div class="card">
+                                        
+                                        <div class="card-header" data-background-color="purple">
+                                            <h4 class="title">FB Messenger Integration</h4>
+                                        </div>
+                                        
+                                        
+                                        <div class="card-content">
+                                            <form method="post">
+                                                <div class="row">
+                                                    
+                                                    
+                                                    <div class="col-md-12">
+                                                        
+                                                        
+                                                        <p class="card-content">
+                                                            A simple guide to integrating your BOT to Facebook Messenger 
+                                                        </p>
+                                                        
+                                                        
+                                                        <!--
+                                                        
+                                                        <a href="javascript:void();" id="read_instruction">
+                                                        
+                                                            <span class="card-content" style="text-align:left;">Please read guide before </span>
+                                                            <br />
+                                                            <span class="card-content">connecting bot to</span>
+                                                            <br />
+                                                            <span class="card-content">Facebook Messenger</span>
+                                                            
+                                                        </a>
+                                                        
+                                                        -->
+                                                        
+                                                        <div class="clearfix"></div>
+                                                        
+                                                        
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <br />
+                                                
+                                                <div align="center"><button type="submit" id="btn_start_integration" disabled="" class="btn btn-primary">Coming Soon! </button></div>
+                                                <div class="clearfix"></div>
+                                                
+                                                
+                                            </form>
+                                            
+                                            
+                                        </div>    
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="col-md-12">
+                                
+
+
+                                    <div class="card">
+                                        
+                                        <div class="card-header" data-background-color="purple">
+                                            <h4 class="title">Integrate to your website</h4>
+                                        </div>
+                                        
+                                        
+                                        <div class="card-content">
+                                            <form method="post">
+                                                <div class="row">
+                                                    
+                                                    
+                                                    <div class="col-md-12">
+                                                        
+                                                        
+                                                        <p class="card-content">
+                                                            Do a simple integration into your website and allow users/customers chat with your brand smartly.   
+                                                        </p>
+                                                        
+                                                        
+                                                        <!--
+                                                        
+                                                        <a href="javascript:void();" id="read_instruction">
+                                                        
+                                                            <span class="card-content" style="text-align:left;">Please read guide before </span>
+                                                            <br />
+                                                            <span class="card-content">connecting bot to</span>
+                                                            <br />
+                                                            <span class="card-content">Facebook Messenger</span>
+                                                            
+                                                        </a>
+                                                        
+                                                        -->
+                                                        
+                                                        <div class="clearfix"></div>
+                                                        
+                                                        
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <br />
+                                                
+                                                <div align="center"><button type="submit" id="btn_integrate" class="btn btn-success">Integrate</button></div>
+                                                <div class="clearfix"></div>
+                                                
+                                                
+                                            </form>
+                                            
+                                            
+                                        </div>    
+                                    </div>
+
+
+
+                                </div>
+
+
+
+                            </div>
+
+
+
+                        </div>
+                        
+                        <div class="col-md-6">
+                            
+                            <div class="card">
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Profile</h4>
+                                    <p class="category">View your profile</p>
+                                </div>
+                                <div class="card-content">
+                                    <form>
+                                        <div class="row">
+                                            
+
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Username</label>
+                                                    <input type="text" value="<%= profile[0].username %>" disabled="" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Email address</label>
+                                                    <input type="email" value="<%= profile[0].email %>" disabled="" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">First Name</label>
+                                                    <input type="text" value="<%= profile[0].fname %>" disabled="" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Last Name</label>
+                                                    <input type="text" value="<%= profile[0].lname %>" disabled="" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <%
+                                        
+                                        
+                                        var role_val = "";
+                                        if( profile[0].role == 0)
+                                            role_val = "Primary";
+                                        else if(profile[0].role == 1)
+                                            role_val = "Secondary";
+                                        
+                                        
+                                        %>
+        
+
+                                        
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Role</label>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label"></label>
+                                                        <textarea class="form-control" rows="5" disabled><%= role_val %></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>"No Answer" Response</label>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label"></label>
+                                                        <textarea class="form-control" rows="5" disabled><%= no_response %></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <!--<button type="submit" class="btn btn-primary pull-right">Update Profile</button> -->
+                                        <div class="clearfix"></div>
+                                    
+                                    
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-md-3">
+                            <div class="card card-profile">
+                                <div class="card-avatar">
+                                    <a href="#pablo">
+                                        <img class="img" src="/img/bot_avatar.png" />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    
+                                    <h4 class="card-title"> <%= bot_name %> </h4>
+                                    <p class="card-content">
+                                        
+                                        <%= bot_desc %>
+                                        
+                                    </p>
+                                    
+                                    
+                                    <a href="http://<%= domain %>/<%= bot_name.toLowerCase() %>" target="_blank" class="btn btn-primary btn-round">OPEN BOT</a>
+                                    <a href="javascript:no_response();" class="btn btn-warn btn-round" id="btn_no_response">SET "NO ANSWER" RESPONSE</a>
+                                    <a href="/bot/<%= bot_id %>/settings" class="btn btn-success btn-round" id="btn_settings"><i class="material-icons">settings</i> SETTINGS</a>
+                                    <a href="javascript:destroy();" class="btn btn-danger btn-round" id="destroy_bot">DESTROY BOT</a>
+                                    
+                                    
+            						<br />
+                                    <br />
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+
+
+                
+
+
+            </div>
+            
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <p align="center" class="copyright">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="javascript:;">Fintech & Innovations</a></p>
+
+
+
+<div align="right"><iframe src="http://botifynew.eu-4.evennode.com/widget/5b36573a0758d20014c2341e" style="border: 0px; overflow:hidden;" width="200" height="600"></iframe></div>
+
+
+                </div>
+
+            </footer>
+            
+            
+        
+</div>
+    </div>
+
+
+
+<div id="NoResponse" class="modal fade" role="dialog">
+    
+    
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        
+        
+        <div class="modal-content">
+          
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Set "No Answer" Response for your Bot. </h4>
+          </div>
+          
+          
+          
+          <div class="modal-body">
+            
+            <form method="post">
+                
+                <div class="row">
+                    
+                    <div class="col-md-12">
+                        
+                        <div class="form-group label-floating">
+                            
+                            <textarea class="form-control" rows="3" id="resp_val"></textarea>
+                            
+                        </div>
+                    
+                    </div>
+                    
+                </div>
+                
+                <br />
+                
+                <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+                <button type="submit" id="btn_set_resp" class="btn btn-primary pull-right">Set Response</button>
+                
+                <div class="clearfix"></div>
+                
+            </form>
+          
+          </div>
+          
+          
+          <div class="modal-footer">
+          </div>
+          
+        
+        </div>
+    
+    
+    </div>
+    
+    
+</div>
+
+
+<div id="ReadInstructions" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        
+        
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Connecting your Bot To Messenger</h4>
+      </div>
+      
+      
+      <div class="modal-body">
+        
+        
+        <ul>
+            
+            
+            <li>Create a Facebook page for which your want to connect your bot to <i>(Ensure the page is published)</i> </li>
+            <li>Create a Facebook app for which the page would be linked to. </li>
+            <li>Once the app is created, go to Messenger and click on the Setup</li>
+            <li>The setup button would open up a page for a few info to be filled</li>
+            <li>Use 'https://botengine-enaiho.c9users.io/messenger/webhook' for your call and 'test_token' for your token </li>
+            <li>Setup a page access token by selecting the page you want to connect your messenger to.</li>
+            <li>use the token generated to integrate the BOT on Botify. </li>
+            
+        </ul>
+        
+        
+      </div>
+      
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    
+    
+    </div>
+  </div>
+</div>
+
+
+
+<div id="GetStarted" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        
+        
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="val_token_title">Connect To Facebook Messenger</h4>
+      </div>
+      
+      
+      <div class="modal-body">
+        
+        
+        <form method="post" id="form_val_token">
+            
+            <div class="row">
+                
+                <div class="col-md-12">
+                    
+                    <div class="form-group label-floating">
+                        
+                        <label class="control-label">Facebook Access Token <i>(please ensure that the right token is inserted)</i></label>
+                        <input type="text" class="form-control" id="token" />
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <br />
+            
+            
+            <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+            <button type="submit" id="btn_validate_token" class="btn btn-primary pull-right">Validate</button>
+            
+            
+            <div class="clearfix"></div>
+            
+            
+        </form>
+        
+        
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+        
+        
+        <div class="card_content" id="finish_integration" style="display:none;">
+            
+            
+            
+            <label>Messenger/App Name: </label> &nbsp; &nbsp;  <strong id="lbl_app"></strong>
+            <p class="card-content">
+            
+                <label>Access Token: </label> &nbsp; &nbsp;
+                
+                                                    
+                <div class="form-group">
+                
+                    <div class="form-group label-floating">
+                        <textarea class="form-control" rows="5" id="txt_token" disabled=""></textarea>
+                    </div>
+                
+                </div>
+                
+                
+            </p>
+            
+            <div class="clearfix"></div>
+            
+            <br />
+            
+            <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="btn_finish_integration" class="btn btn-primary pull-right">Finish Integration</button>
+            
+            <br />
+            <br />
+            
+            
+        </div>
+        
+        
+      </div>
+      
+      
+      <div class="modal-footer">
+      </div>
+    
+    
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+<div id="CopyWidget" class="modal fade" role="dialog">
+    
+    
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        
+        
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Copy Widget</h4>
+      </div>
+      
+      
+      <div class="modal-body">
+        
+        
+
+        <p>Copy Code Snippet and place on your website</p>
+        <br />
+        <label class="control-label" id="lbl_widget"></label>
+
+        <br />
+        <br />
+        
+
+      </div>
+      
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    
+    
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
+    
+
+    
+ <input type="hidden" id="bot_id" value="<%= bot_id %>" />
+
+ 
+    
+</body>
+<!--   Core JS Files   -->
+
+
+<script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/material.min.js" type="text/javascript"></script>
+<script src="/js/chartist.min.js"></script>
+<script src="/js/arrive.min.js"></script>
+<script src="/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/js/bootstrap-notify.js"></script>
+<script src="/js/material-dashboard.js?v=1.2.0"></script>
+<script src="/js/demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.7/xlsx.core.min.js"></script>
+<script src="/js/app.js"></script>
+<script type="text/javascript">
+    
+
+    $(document).ready(function(e){
+
+
+        $("#btn_integrate").on("click",function(e){
+
+
+            
+            var domain_url = window.location.hostname;  //alert(domain_url);
+            var path = "";
+
+            if( domain_url == "localhost" )
+                path = "http://" + domain_url + ":8000/";
+            else
+                path = "http://" + domain_url + "/";
+
+
+            var bot_id = $("#bot_id").val();
+            var html_integrate = '<div align="right"><iframe src="' + path + 'widget/' + bot_id + '" style="border: 0px; overflow:hidden;" width="200" height="600"></iframe></div>';
+            $("#lbl_widget").text( html_integrate.toString() ).css({ "font-weight":"bold", "font-size":"14px", "color":"black" });
+            $("#CopyWidget").modal("show");
+
+
+
+
+            e.preventDefault();
+
+
+        });
+
+
+        try{ e.preventDefault(); }
+        catch(ex){}
+
+
+    });
+
+
+
+</script>        
+
+
+</html>

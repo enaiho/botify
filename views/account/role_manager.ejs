@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>BOTIfy | Role Manager</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap core CSS     -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <!--  Material Dashboard CSS    -->
+    <link href="/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/css/demo.css" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+
+</head>
+<body>
+    
+    
+    <div class="wrapper">
+        
+        
+        
+        <%- sidebar %>
+        
+        
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"> Bots </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        
+                        <%- header %>
+                        
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+				
+				<div class="row">
+				    
+				    
+                        <div class="col-md-12">
+                            
+                            
+                            <div class="card">
+                                
+                                
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Role Manager</h4>
+                                </div>
+                                
+                                            
+                                <% if(users.length == 0){ %>
+                                
+                                    
+                                    <br />
+                                    <br />
+                                    
+                                    <div align="center">
+                                        <strong><h6>You have no users setup for this organization. </h6></strong>
+                                    </div>
+                                    
+                                    <br />
+                                    <br />
+                                
+                                <% }
+                                
+                                else{
+                                    
+                                    
+                                    %>
+                                    
+                                    
+                                    <%= //users 
+                                    %>
+                                    
+                                    <div class="card-content table-responsive">
+                                    
+                                        <table class="table">
+                                            <thead class="text-primary">
+                                                
+                                                
+                                                <tr>
+                                                
+                                                
+                                                <td>Name</td>
+                                                <td>Email</td>
+                                                <td>Specific Actions</td>
+                                                <td>Role</td>
+                                                <td></td>
+                                                <td></td>
+                                                
+                                                
+                                                </tr>
+                                                
+                                                <br />
+                                                
+                                                
+    
+                                            </thead>
+                                            <tbody>
+                                                
+                                    
+                                    
+                                        <%
+                                    
+                                        for(var i=0; i<users.length; i++){
+                                            
+                                    %>
+                                    
+                                    
+                                    
+                                        <tr>
+                                            
+                                            <td><a href="/bot/<%= users[i]._id; %>"><%= users[i].fname + " " + users[i].lname ; %></a></td>
+                                            <td> <%= users[i].email %> </td>
+                                            <td> no actions </td>
+                                            <td> <% 
+                                            
+                                            var role_str;
+                                            if(users[i].role == 0)
+                                                role_str = "Primary";
+                                            else if(users[i].role == 1)
+                                                role_str = "Secondary";
+                                            else
+                                                role_str = "No role assigned";
+                                            
+                                            
+                                            %>
+                                            
+                                            <strong><%= role_str %></strong>
+                                            
+                                            </td>
+                                            <td> 
+                                            
+                                            
+                                                <div class="form-group label-floating is-empty">
+                                                    
+                                                    
+                                                    
+                                                    <select id="sel_<%= users[i]._id %>" class="form-control">
+                                                        
+                                                        <option value="">Select Role</option>
+                                                        <option value="0">Primary</option>
+                                                        <option value="1">Secondary</option>
+                                                        
+                                                    </select>
+                                                    
+                                                    
+                                                    <button class="btn btn-primary btn_save_role" id="<%= users[i]._id %>">Assign</button>
+                                                
+                                                
+                                                </div>
+                                                
+                                            </td>
+                                            
+                                            <td>
+                                                <a href="user/<%= users[i]._id %>">Set Advanced Roles</a>
+                                            </td>
+                                            
+                                            
+                                        </tr>
+                                    
+                                        
+                                            
+                                    <%
+                                            
+                                        }
+                                        
+                                        
+                                        
+                                        %>
+                                        
+                                            </tbody>
+                                        
+                                        </table>
+                                        
+                                    </div>
+                                        
+                                        <%
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                    %>
+                                
+                                
+                            </div>
+                            
+                        </div>
+                        
+                </div>
+
+
+            </div>
+
+
+</div>
+
+
+<div id="RoleTrigger" class="modal fade" role="dialog">
+
+
+  <div class="modal-dialog">
+
+    
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Role Trigger</h4>
+      </div>
+      <div class="modal-body">
+        <p>You are about to give this user <strong>secondary priviledges.</strong> This would mean that this user would be able to perform all operations on the platform. Are you sure you want to continue?</p>
+      </div>
+      
+      
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" id="btn_role_cont">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+
+
+<!--   Core JS Files   -->
+<script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/material.min.js" type="text/javascript"></script>
+<script src="/js/chartist.min.js"></script>
+<script src="/js/arrive.min.js"></script>
+<script src="/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/js/bootstrap-notify.js"></script>
+<script src="/js/material-dashboard.js?v=1.2.0"></script>
+<script src="/js/demo.js"></script>
+<script src="js/app.js"></script>
+
+
+<script type="text/javascript">
+    
+    
+    $(document).ready(function() {
+
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+    
+    
+</script>
+</html>
+
+
+
