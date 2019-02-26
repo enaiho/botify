@@ -76,7 +76,7 @@ app.use( express.static( "public" ) );
 var mongoPassword = "lampard";
 var mongoUser = "fa836bc00c91f8d40a901c2a759bbd2c";
 
-var mongoHostString = "4a.mongo.evennode.com:27017/fa836bc00c91f8d40a901c2a759bbd2c";
+var mongoHostString = "4b.mongo.evennode.com:27017/fa836bc00c91f8d40a901c2a759bbd2c";
 var connect = null;
 var sess;
 const wit_api = "https://api.wit.ai/"; 
