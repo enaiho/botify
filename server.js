@@ -63,15 +63,6 @@ app.set('view engine', 'ejs');
 app.use( express.static( "public" ) );
 
 
-// var mongoPassword = 'lampard';
-// var mongoUser = "fa836bc00c91f8d40a901c2a759bbd2c";
-
-
-
-// console.log( "stopping" );
-// return;
-
-
 
 var mongoPassword = "lampard";
 var mongoUser = "fa836bc00c91f8d40a901c2a759bbd2c";
