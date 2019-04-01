@@ -71,7 +71,7 @@ var mongoHostString = "4b.mongo.evennode.com:27017/fa836bc00c91f8d40a901c2a759bb
 var connect = null;
 var sess;
 const wit_api = "https://api.wit.ai/"; 
-const domain = "localhost:8000";
+const domain = "botifyng.herokuapp.com";
 const {Wit, log} = require('node-wit');
 const fb = require('fb');
 
@@ -2192,7 +2192,8 @@ app.get("/bots",function(req, res) {
     condition = {username:sess.username};
     
   
-  schema.BotSetup.find( condition ,function(err, bots){
+
+  schema.BotSetup.find( {$query: condition, $orderby: {date_created: 0} }, function(err, bots){
     
     
     if(!err){
@@ -2202,8 +2203,6 @@ app.get("/bots",function(req, res) {
       // if(bots.length > 0){
         
       //   for(var i=0; i<bots.length; i++){
-          
-          
           
           
       //     if(bots[i].created_by == sess.email){
@@ -4146,7 +4145,7 @@ app.post("/create_bot",function(req, res) {
             name: bot_name.toUpperCase(),
             description: bot_desc,
             type: bot_type,
-            date_created: new Date().getDate(),
+            date_created: Date.now(),
             created_by: sess.email,
             approved:0,
             approved_by: "",
