@@ -487,11 +487,13 @@
                 <form id="uploadForm" enctype="multipart/form-data" action="/upload/excel" method="post">
                     
                     
+                    
                     <input type="file" name="userExcel" class="btn btn-primary"  /><br />
                     <input type="submit" value="Upload File" class="btn btn-primary" />
                     
                     <input type="hidden" name="bot_name" value="<%= bot_name %>" />
                     <input type="hidden" name="bot_id" value="<%= bot[0]._id %>" />
+
                     
                 
                 </form>

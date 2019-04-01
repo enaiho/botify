@@ -473,7 +473,7 @@ $(document).ready(function(e){
             else{
                 
                 
-                $("#btn_add_keyword").attr("disabled",true).html("Adding keyword.... ");
+                $("#btn_add_keyword").attr("disabled",true).html("Adding Question.... ");
                 $.post("/add_keyword",
 		        {
 		        
