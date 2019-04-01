@@ -507,6 +507,21 @@ $(document).ready(function(e){
             catch(ex){}
             
         });
+
+        $("#keyword").keydown(function(e){
+
+
+            var keyword_length = $("#keyword").val().length;
+            if(e.keyCode == 8){
+                keyword_length = $("#keyword").val().length-1;
+            }
+
+
+            $("#lbl_count").html(keyword_length.toString());
+
+
+        });
+
         $(".syn").each(function(){
             
             
@@ -530,6 +545,7 @@ $(document).ready(function(e){
                         
                         $("#"+id).attr("disabled",true);
                         $("#process_"+id).html("<strong>Processing.......</strong>");
+
                         
                         //demo.showNotification('top','right',"Processing..... ",2);
                         
