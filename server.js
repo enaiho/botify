@@ -2198,7 +2198,7 @@ app.get("/bots",function(req, res) {
     
     if(!err){
       
-      res.render("account/bots",{bots:bots,sidebar:sideBar(sess.role), header:headerBar(sess.name,sess.role), role: sess.role });
+      res.render("account/bots",{bots:bots,sidebar:sideBar(sess.role), header:headerBar(sess.name,sess.role), role: sess.role, domain: domain });
             
       // if(bots.length > 0){
         
@@ -4676,7 +4676,7 @@ app.post("/add_keyword",function(req, res){
                       "content-type": "application/json",
             
                   },
-                  proxy: 'http://proxy.gtbank.com:80',
+                  //proxy: 'http://proxy.gtbank.com:80',
                   body: json_entity
                   
                 }, 

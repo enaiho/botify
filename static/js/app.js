@@ -559,6 +559,7 @@ $(document).ready(function(e){
             		    	    append("<br />  "+"<strong>"+syn_val+"</strong> <a href='javascript:;'>Edit</a><label> | </label><a href='javascript:;'>Delete</a>");
             		    	    
             		    	    demo.showNotification('top','right',data.msg,2);
+                                reloadPage();
             		    	    
             		    	    
             		    	    
@@ -569,6 +570,7 @@ $(document).ready(function(e){
             
             		        $("#"+id).attr("disabled",false);
             		        $("#process_"+id).html("");
+
         
             		        
             		    });
@@ -980,7 +982,8 @@ $(document).ready(function(e){
                     
                     
                     $("#EditSynonym").modal("hide");
-                    $("#btn_save_synonym").attr("disabled",false).html("Save"); 
+                    $("#btn_save_synonym").attr("disabled",false).html("Save");
+                    reloadPage(); 
                     
                     
                 });
