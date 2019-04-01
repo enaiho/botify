@@ -348,7 +348,7 @@ $(document).ready(function(e){
                     
                     
                     $("#btn_create_bot").attr("disabled",false).html("Create");
-    
+                    reloadPage();
     
     		    });
 		    
