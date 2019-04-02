@@ -521,6 +521,9 @@ $(document).ready(function(e){
             if( keyword_length >140 ){
                 $("#lbl_count").css({ "color":"#F00" });
             }
+            else{
+                $("#lbl_count").css({ "color":"green" });
+            }
 
 
             $("#lbl_count").html(keyword_length.toString());
