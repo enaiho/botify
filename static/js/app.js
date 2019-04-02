@@ -469,7 +469,9 @@ $(document).ready(function(e){
             
             
             if(keyword == "")
-                demo.showNotification('top','right',"Keyword value cannot be empty. ",4);
+                demo.showNotification('top','right',"Question cannot be empty. ",4);
+            else if( keyword.length > 0 )
+                demo.showNotification('top','right',"Question cannot be more than 140 characters. ",4);    
             else{
                 
                 
@@ -508,12 +510,16 @@ $(document).ready(function(e){
             
         });
 
-        $("#keyword").keydown(function(e){
+        $("#keyword").keyup(function(e){
 
 
             var keyword_length = $("#keyword").val().length;
             if(e.keyCode == 8){
-                keyword_length = $("#keyword").val().length-1;
+                keyword_length = $("#keyword").val().length;
+            }
+
+            if( keyword_length >140 ){
+                $("#lbl_count").css({ "color":"#F00" });
             }
 
 
