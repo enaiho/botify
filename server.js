@@ -71,7 +71,8 @@ var mongoHostString = "4b.mongo.evennode.com:27017/fa836bc00c91f8d40a901c2a759bb
 var connect = null;
 var sess;
 const wit_api = "https://api.wit.ai/"; 
-const domain = "botifyng.herokuapp.com";
+//const domain = "botifyng.herokuapp.com";
+const domain = "localhost:8000";
 const {Wit, log} = require('node-wit');
 const fb = require('fb');
 
